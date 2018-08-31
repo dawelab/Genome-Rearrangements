@@ -30,6 +30,11 @@ cat discordants-header.sam NC_001416-pPvUbi2H.sam | samtools view -Sb - > NC_001
 samtools sort -n -o NC_001416-pPvUbi2H.pe.sortedbyname.bam -T NC_001416-pPvUbi2H NC_001416-pPvUbi2H.pe.bam
 #Convert bam format to fastq format 
 bedtools bamtofastq -i NC_001416-pPvUbi2H.pe.sortedbyname.bam -fq NC_001416-pPvUbi2H.end1.fq -fq2 NC_001416-pPvUbi2H.end2.fq
+######
+seqtk
+######
+seqtk subseq /lustre1/jl03308/20xIllumina-lambda/data/140709-48023978/RiceE16_140709-57533608/sum.fastq.gz IDs.txt > subseq.fq
+
 #Assemble extracted paired-end reads 
 /usr/local/apps/spades/3.10.0/bin/spades.py --pe1-1 NC_001416-pPvUbi2H.end1.fq --pe1-2 NC_001416-pPvUbi2H.end2.fq -o NC_001416-pPvUbi2H-pe
 
